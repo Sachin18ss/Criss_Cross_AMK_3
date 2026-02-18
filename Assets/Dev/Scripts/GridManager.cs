@@ -23,7 +23,7 @@ public class GridManager : MonoBehaviour
         return grid[r, c] == 0;
     }
 
-    public void SetValue(int r, int c, int value)
+    public void SetCell(int r, int c, int value)
     {
         grid[r, c] = value;
     }
@@ -37,7 +37,10 @@ public class GridManager : MonoBehaviour
                 Vector2 worldPos = new Vector2(r * cellSize, c * cellSize);
 
                 GameObject cell = Instantiate(cellPrefab, worldPos, Quaternion.identity);
-                cell.name = $"cell_{r}_{c}";
+                cell.name = $"Cell_{r}_{c}";
+                Cell cellScript = cell.GetComponent<Cell>();
+                cellScript.row = r;
+                cellScript.column = c;
             }
         }
     }
