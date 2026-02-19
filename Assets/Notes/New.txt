@@ -1,0 +1,2 @@
+1. Text for CRound -O  and cross -X
+2. two sprite will be shown in alternative click
