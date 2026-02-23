@@ -1,13 +1,17 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GridManager : MonoBehaviour
 {
-    private int _rows = 3, _cloumns = 3;
-    private int[,] _grid;
-    private bool _isXTurn = true;
+    [SerializeField]private int _rows = 3, _cloumns = 3;
+    [SerializeField] private int[,] _grid;
+    [SerializeField] private bool _isXTurn = true;
+    [SerializeField] private bool _hasGameStarted = false;
 
     public GameObject cellPrefab;
     public float cellSize = 1f;
+    public Button startButton = null;
 
 
     private void Awake()
@@ -49,23 +53,94 @@ public class GridManager : MonoBehaviour
 
     public void OnCellCliked(Cell cell)
     {
+        if (!_hasGameStarted) return;
+
         int r = cell.row;
         int c = cell.column;
 
         if (_grid[r, c] != 0) return;
 
-        if(_isXTurn)
+        int value = _isXTurn ? 1 : 2;
+        SetCell(r, c, value);
+        cell.SetValue(value == 1 ? "X" : "O");
+
+        if(CheckWin(value))
         {
-            SetCell(r, c, 1);
-            cell.SetValue("X");
+            Debug.Log((value == 1 ? "X" : "O") + " Wins!");
+            _hasGameStarted = false;
         }
-        else
+       
+        _isXTurn = !_isXTurn;
+    }
+
+    public bool CheckWin(int value)
+    {
+        //row check
+        for(int r = 0; r<_rows; r++)
         {
-            SetCell(r, c, 2);
-            cell.SetValue("O");
+            bool win = true;
+            for(int c=0; c<_cloumns; c++)
+            {
+                if (_grid[r,c] != value)
+                {
+                    win =false; break;
+                }
+            }
+
+            if (win) return true; ;
         }
 
-        _isXTurn = !_isXTurn;
+
+        //column check
+        for (int c = 0; c < _cloumns; c++)
+        {
+            bool win = true;
+            for (int r = 0; r < _rows; r++)
+            {
+                if (_grid[r, c] != value)
+                {
+                    win = false; break;
+                }
+            }
+
+            if (win) return true; ;
+        }
+
+        int size = _rows == _cloumns ? _rows : 0;
+
+        //Left to Right Diagnal check
+        bool diag1 = true;
+        for (int i = 0; i<size; i++)
+        {
+           
+            if (_grid[i,i]!= value)
+            {
+                diag1 = false; break;
+            }
+        }
+        if(diag1) return true;
+
+
+        //Right to Left Diagnal check
+        bool diag2 = true;
+        for (int i = 0; i < size; i++)
+        {
+
+            if (_grid[i, size-1-i] != value)
+            {
+                diag2 = false; break;
+            }
+        }
+        if (diag2) return true;
+
+        return false;
+
+    }
+
+    public void OnStart()
+    {
+        _hasGameStarted = true;
+        startButton.gameObject.SetActive(false);
     }
 
 }
