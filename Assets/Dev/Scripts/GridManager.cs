@@ -1,18 +1,28 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+//using UnityEngine.UIElements;
 
 public class GridManager : MonoBehaviour
 {
-    [SerializeField]private int _rows = 3, _cloumns = 3;
+    [SerializeField] private int _rows = 3, _cloumns = 3;
     [SerializeField] private int[,] _grid;
     [SerializeField] private bool _isXTurn = true;
     [SerializeField] private bool _hasGameStarted = false;
 
     public GameObject cellPrefab;
+    public Transform cellsHolder;
     public float cellSize = 1f;
     public Button startButton = null;
 
+    [Header("Main Panels")]
+    public GameObject menuPanel;
+    public GameObject gamePanel;
+    public GameObject gameOverPanel;
+
+    [Header("Sub Panels")]
+    public GameObject exitPopUpPanel;
+    public GameObject optionsPanel;
 
     private void Awake()
     {
@@ -21,6 +31,12 @@ public class GridManager : MonoBehaviour
 
     private void Start()
     {
+        menuPanel.SetActive(true);
+
+        gamePanel.SetActive(false);
+        exitPopUpPanel.SetActive(false);
+        optionsPanel.SetActive(false);
+
         DrawGrids();
     }
 
@@ -42,7 +58,8 @@ public class GridManager : MonoBehaviour
             {
                 Vector2 worldPos = new Vector2(r * cellSize, c * cellSize);
 
-                GameObject cell = Instantiate(cellPrefab, worldPos, Quaternion.identity);
+                GameObject cell = Instantiate(cellPrefab, worldPos, Quaternion.identity, cellsHolder);
+                
                 cell.name = $"Cell_{r}_{c}";
                 Cell cellScript = cell.GetComponent<Cell>();
                 cellScript.row = r;
@@ -137,10 +154,39 @@ public class GridManager : MonoBehaviour
 
     }
 
-    public void OnStart()
+    public void OnStartClick()
     {
         _hasGameStarted = true;
-        startButton.gameObject.SetActive(false);
+        //startButton.gameObject.SetActive(false);
+        menuPanel.SetActive(false);
+        gamePanel.SetActive(true);
     }
 
+    public void OnLeaveClick()
+    {
+        exitPopUpPanel.SetActive(true);
+    }
+
+    public void OnYesClickOnExit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
+    }
+
+    public void OnNoClickOnExit()
+    {
+        exitPopUpPanel.SetActive(false);
+    }
+
+    public void OnOptionsClick()
+    {
+        optionsPanel.SetActive(true);
+    }
+
+    public void OnCloseClickOnOptions()
+    {
+        optionsPanel.SetActive(false);
+    }
 }

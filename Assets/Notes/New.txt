@@ -1,2 +1,8 @@
-1. Text for CRound -O  and cross -X
-2. two sprite will be shown in alternative click
+1. 3 panels - Menu, Game and Game Over
+2. Menu panels contains start quit and options panel
+3. Muisc and Sound efects
+4. Options contisn and brighntess and volume slider 
+5. After quit click shows the pop up panel
+6. In game shows quit button
+7. After Game end show who won and then Show Game over panel
+8. In GO panel, there will be restart and Back to Menu buuton

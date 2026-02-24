@@ -1,0 +1,12 @@
+Menu Panel Set up
+
+- Menu panel set up completed
+- Added start, leave and options button
+- Added pop up panel for exit confirmation
+- Added options panel 
+- Game Name added
+- Game Panel added as a Empty Game Object
+- Game Panel holds the all the cells that are created 
+- All buttons are binded to methods 
+- Transiton from Menu panel to Game panel is working 
+- Appliction quit set up added
