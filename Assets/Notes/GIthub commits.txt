@@ -1,12 +1,18 @@
-Menu Panel Set up
+Game Over Panel set up
 
-- Menu panel set up completed
-- Added start, leave and options button
-- Added pop up panel for exit confirmation
-- Added options panel 
-- Game Name added
-- Game Panel added as a Empty Game Object
-- Game Panel holds the all the cells that are created 
-- All buttons are binded to methods 
-- Transiton from Menu panel to Game panel is working 
-- Appliction quit set up added
+- Displays who won the game
+- Displays whos turn is now
+- Game over panel shows up with Menu and Restart button
+- Menu button opens up Menu Panel
+- Restart button restarts the game
+- Game over panel background color depends the who won the game
+- Game Title color modified 
+- Grid Managrer script modified 
+
+Bugs fixed 
+- Displays who won the game
+- Texts overlap fixed 
+- Hexagonal color code error fixed.
+- Background image displays right color
+
+

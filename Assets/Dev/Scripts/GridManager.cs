@@ -1,4 +1,7 @@
+using System.Collections;
 using TMPro;
+using Unity.Multiplayer.PlayMode;
+//using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 //using UnityEngine.UIElements;
@@ -7,8 +10,11 @@ public class GridManager : MonoBehaviour
 {
     [SerializeField] private int _rows = 3, _cloumns = 3;
     [SerializeField] private int[,] _grid;
+    [SerializeField] private int _winner;
+
     [SerializeField] private bool _isXTurn = true;
     [SerializeField] private bool _hasGameStarted = false;
+    [SerializeField] private bool _hasGameOver = false;
 
     public GameObject cellPrefab;
     public Transform cellsHolder;
@@ -23,6 +29,14 @@ public class GridManager : MonoBehaviour
     [Header("Sub Panels")]
     public GameObject exitPopUpPanel;
     public GameObject optionsPanel;
+    public GameObject gameUIPanel;
+
+    [Header("Texts Reference")]
+    public TextMeshProUGUI currentPlayer;
+    public TextMeshProUGUI winner;
+
+    [Header("Image Reference")]
+    public Image gameOverBG;
 
     private void Awake()
     {
@@ -34,12 +48,41 @@ public class GridManager : MonoBehaviour
         menuPanel.SetActive(true);
 
         gamePanel.SetActive(false);
+        gameOverPanel.SetActive(false);
+        gameUIPanel.SetActive(false);
         exitPopUpPanel.SetActive(false);
         optionsPanel.SetActive(false);
+        winner.text = string.Empty;
 
         DrawGrids();
+        _winner = 0;
     }
 
+    private void Update()
+    { 
+        
+        UIUpdate();
+
+    }
+
+    public void UIUpdate()
+    {
+        
+        if(_winner == 1)
+        {
+            SetBGImageColor("#25A364");
+            winner.text = "You Won this Game!";
+        }
+        else if(_winner == 2)
+        {
+            SetBGImageColor("#A32525");
+            winner.text = "Opponent Won this Game!";
+        }
+        
+        if (_hasGameOver) return;
+        currentPlayer.text = (_isXTurn) ? "Your move now.." : $"Opponent move now..";
+
+    }
     public bool IsCellEmpty(int r, int c)
     {
         return _grid[r, c] == 0;
@@ -84,7 +127,14 @@ public class GridManager : MonoBehaviour
         if(CheckWin(value))
         {
             Debug.Log((value == 1 ? "X" : "O") + " Wins!");
+
+            _winner = (value == 1) ? 1 : 2;
+            currentPlayer.text = string.Empty;
+
             _hasGameStarted = false;
+            _hasGameOver = true;
+
+            StartCoroutine(ShowGameOver());
         }
        
         _isXTurn = !_isXTurn;
@@ -160,6 +210,8 @@ public class GridManager : MonoBehaviour
         //startButton.gameObject.SetActive(false);
         menuPanel.SetActive(false);
         gamePanel.SetActive(true);
+        gameUIPanel.SetActive(true);
+
     }
 
     public void OnLeaveClick()
@@ -188,5 +240,47 @@ public class GridManager : MonoBehaviour
     public void OnCloseClickOnOptions()
     {
         optionsPanel.SetActive(false);
+    }
+
+    IEnumerator ShowGameOver()
+    {
+        yield return new WaitForSeconds(2f);
+
+        gameOverPanel.SetActive(true);  
+    }
+
+    public void Menu()
+    {
+        gameOverPanel.SetActive(false);
+        gamePanel.SetActive(false );
+
+        menuPanel.SetActive(true);
+    }
+
+    public void Restart()
+    {
+        gameOverPanel.SetActive(false);
+        menuPanel.SetActive(false);
+
+        gamePanel.SetActive(true);
+        _winner = 0;
+        winner.text = string.Empty;
+        
+    }
+
+    public void SetBGImageColor(string hexColor)
+    {
+        Color newColor;
+        // TryParseHtmlString handles both 6-digit (RGB) and 8-digit (RGBA) hex strings, 
+        // with or without a '#' prefix.
+        if (ColorUtility.TryParseHtmlString(hexColor, out newColor))
+        {
+            // Assign the successfully parsed color to the Image component
+            gameOverBG.color = newColor;
+        }
+        else
+        {
+            Debug.LogError("Invalid hex color string provided: " + hexColor);
+        }
     }
 }
