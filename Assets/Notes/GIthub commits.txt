@@ -1,18 +1,6 @@
-Game Over Panel set up
+ 
 
-- Displays who won the game
-- Displays whos turn is now
-- Game over panel shows up with Menu and Restart button
-- Menu button opens up Menu Panel
-- Restart button restarts the game
-- Game over panel background color depends the who won the game
-- Game Title color modified 
-- Grid Managrer script modified 
 
-Bugs fixed 
-- Displays who won the game
-- Texts overlap fixed 
-- Hexagonal color code error fixed.
-- Background image displays right color
+
 
 
