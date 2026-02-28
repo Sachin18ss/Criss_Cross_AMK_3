@@ -4,12 +4,15 @@ using Unity.Multiplayer.PlayMode;
 //using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+//using static UnityEngine.Rendering.DebugUI;
 //using UnityEngine.UIElements;
 
 public class GridManager : MonoBehaviour
 {
-    [SerializeField] private int _rows = 3, _cloumns = 3;
-    [SerializeField] private int[,] _grid;
+    public int _rows = 3, _cloumns = 3;
+    public Cell[,] _cells;
+    public int[,] _grid;
+
     [SerializeField] private int _winner;
 
     [SerializeField] private bool _isXTurn = true;
@@ -38,9 +41,13 @@ public class GridManager : MonoBehaviour
     [Header("Image Reference")]
     public Image gameOverBG;
 
+    [Header("Scripts Reference")]
+    public ResetGameLogic resetGameLogic;
+
     private void Awake()
     {
         _grid = new int[_rows, _cloumns];
+        _cells = new Cell[_rows, _cloumns];
     }
 
     private void Start()
@@ -107,6 +114,8 @@ public class GridManager : MonoBehaviour
                 Cell cellScript = cell.GetComponent<Cell>();
                 cellScript.row = r;
                 cellScript.column = c;
+
+                _cells[r,c] = cellScript;
             }
         }
     }
@@ -249,23 +258,35 @@ public class GridManager : MonoBehaviour
         gameOverPanel.SetActive(true);  
     }
 
-    public void Menu()
+    public void OnMenuClick()
     {
         gameOverPanel.SetActive(false);
-        gamePanel.SetActive(false );
+        gamePanel.SetActive(false);
+        gameUIPanel.SetActive(false);
+
+
+
+        resetGameLogic.ResetGame();
 
         menuPanel.SetActive(true);
     }
 
-    public void Restart()
+    public void OnRestartClick()
     {
         gameOverPanel.SetActive(false);
         menuPanel.SetActive(false);
 
         gamePanel.SetActive(true);
+        gameUIPanel.SetActive(true);
         _winner = 0;
         winner.text = string.Empty;
-        
+
+        _hasGameStarted = true;
+        _hasGameOver = false;
+        _isXTurn = true;
+
+        resetGameLogic.ResetGame();
+
     }
 
     public void SetBGImageColor(string hexColor)

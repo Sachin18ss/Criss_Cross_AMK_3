@@ -201,19 +201,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 123128386}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 527908330}
-        m_TargetAssemblyTypeName: GridManager, Assembly-CSharp
-        m_MethodName: OnMenuClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &123128386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,7 +541,7 @@ GameObject:
   m_Component:
   - component: {fileID: 184809689}
   m_Layer: 0
-  m_Name: Game Panel
+  m_Name: Game Panel - Empty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1767,7 +1755,6 @@ GameObject:
   m_Component:
   - component: {fileID: 527908331}
   - component: {fileID: 527908330}
-  - component: {fileID: 527908332}
   m_Layer: 0
   m_Name: 'Game Manager '
   m_TagString: Untagged
@@ -1806,7 +1793,6 @@ MonoBehaviour:
   currentPlayer: {fileID: 1170175253}
   winner: {fileID: 581133147}
   gameOverBG: {fileID: 1413900486}
-  resetGameLogic: {fileID: 527908332}
 --- !u!4 &527908331
 Transform:
   m_ObjectHideFlags: 0
@@ -1822,19 +1808,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &527908332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 527908329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d52ff5ac260e3349b195e739b600572, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ResetGameLogic
-  gridManager: {fileID: 527908330}
 --- !u!1 &558484655
 GameObject:
   m_ObjectHideFlags: 0
@@ -3688,19 +3661,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1325328350}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 527908330}
-        m_TargetAssemblyTypeName: GridManager, Assembly-CSharp
-        m_MethodName: OnRestartClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1325328350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4198,7 +4159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4943396, g: 0.4943396, b: 0.4943396, a: 1}
+  m_Color: {r: 0.14509805, g: 0.6392157, b: 0.38938782, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
