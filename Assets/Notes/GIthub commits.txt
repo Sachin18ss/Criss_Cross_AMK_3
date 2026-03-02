@@ -1,5 +1,12 @@
 
 
+- Added Volume controller script
+- Added Brightness controller script
+- Added Music controller script
+- Added SFX controller script
+- Added image as brightness overlay 
+- Bind the mehtod with toggle and slider  
+
 
 
 
