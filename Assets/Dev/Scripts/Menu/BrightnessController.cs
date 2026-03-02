@@ -5,24 +5,29 @@ public class BrightnessController : MonoBehaviour
 {
     [SerializeField] private Image brightnessOverlay;
     private const string KEY = "Brightness";
+    private Slider _slider;
 
     void Start()
     {
-        float value = PlayerPrefs.GetFloat(KEY, 1f);
-        GetComponent<Slider>().value = value;
-        ApplyBrightness(value);
+        _slider = GetComponent<Slider>();
+
+        float normalized = PlayerPrefs.GetFloat(KEY, 0.5f);
+
+        _slider.value = normalized * 100f;
+        ApplyBrightness(normalized);
     }
 
-    public void OnValueChanged(float value)
+    public void OnValueChanged(float sliderValue)
     {
-        ApplyBrightness(value);
-        PlayerPrefs.SetFloat(KEY, value);
+        float normalized = Mathf.Clamp(sliderValue / 100f, 0.2f, 1f);
+        ApplyBrightness(normalized);
+        PlayerPrefs.SetFloat(KEY, normalized);
     }
 
     void ApplyBrightness(float value)
     {
+        
         Color c = brightnessOverlay.color;
-        value = value / 100f;
         c.a = 1f - value;
         brightnessOverlay.color = c;
     }

@@ -4,12 +4,13 @@ using UnityEngine.UI;
 public class MusicController : MonoBehaviour
 {
     [SerializeField] private AudioSource musicSource;
+    [SerializeField] private Toggle musicToggle;
     private const string KEY = "Music";
 
     void Start()
     {
         bool on = PlayerPrefs.GetInt(KEY, 1) == 1;
-        GetComponent<Toggle>().isOn = on;
+        musicToggle.isOn = on;
         musicSource.mute = !on;
     }
 

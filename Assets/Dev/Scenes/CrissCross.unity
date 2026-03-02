@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 92254597}
   - component: {fileID: 92254596}
+  - component: {fileID: 92254598}
   m_Layer: 0
   m_Name: 'Music Manager '
   m_TagString: Untagged
@@ -147,11 +148,11 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 6751a2f351ad4934a91a3d8716e83592, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -248,6 +249,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &92254598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92254595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3973ea95a916ce34689b3b9545b921d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MusicController
+  musicSource: {fileID: 92254596}
+  musicToggle: {fileID: 789917774}
 --- !u!1 &123128383
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,7 +1060,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.4862745}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1153,7 +1168,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1319745057}
+        m_TargetAssemblyTypeName: SFXController, Assembly-CSharp
+        m_MethodName: OnToggleChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &337946210
 GameObject:
@@ -2310,6 +2337,7 @@ MonoBehaviour:
   winner: {fileID: 581133147}
   gameOverBG: {fileID: 1413900486}
   resetGameLogic: {fileID: 527908332}
+  sfxController: {fileID: 1319745057}
 --- !u!4 &527908331
 Transform:
   m_ObjectHideFlags: 0
@@ -2492,7 +2520,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &576202025
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3144,7 +3172,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 92254598}
+        m_TargetAssemblyTypeName: MusicController, Assembly-CSharp
+        m_MethodName: OnToggleChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &791127817
 GameObject:
@@ -3616,6 +3656,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1062038758}
   - component: {fileID: 1062038759}
+  - component: {fileID: 1062038760}
   m_Layer: 5
   m_Name: Brightness - Slider
   m_TagString: Untagged
@@ -3692,10 +3733,35 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 50
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1062038760}
+        m_TargetAssemblyTypeName: BrightnessController, Assembly-CSharp
+        m_MethodName: OnValueChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1062038760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062038757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b0b9b276a8a554d8689043528be404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BrightnessController
+  brightnessOverlay: {fileID: 240217029}
 --- !u!1 &1080987908
 GameObject:
   m_ObjectHideFlags: 0
@@ -3783,10 +3849,22 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 50
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1080987911}
+        m_TargetAssemblyTypeName: VolumeController, Assembly-CSharp
+        m_MethodName: OnValueChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1080987911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3796,10 +3874,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1080987908}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02b0b9b276a8a554d8689043528be404, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ffb5663f2de46042ba9dbd17d69dd9b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BrightnessController
-  brightnessOverlay: {fileID: 240217029}
+  m_EditorClassIdentifier: Assembly-CSharp::VolumeController
 --- !u!1 &1096459258
 GameObject:
   m_ObjectHideFlags: 0
@@ -4211,6 +4288,151 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1170175251}
   m_CullTransparentMesh: 1
+--- !u!1 &1319745054
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1319745056}
+  - component: {fileID: 1319745055}
+  - component: {fileID: 1319745057}
+  m_Layer: 0
+  m_Name: SFX Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1319745055
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319745054}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1319745056
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319745054}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 549.13544, y: 391.1061, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1319745057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319745054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 928ad99e617bad24fba51517997944fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXController
+  _sfxSource: {fileID: 1319745055}
+  _placeSfxClip: {fileID: 8300000, guid: 07409207d10c09142a8c3e031f8ada76, type: 3}
+  sfxToggle: {fileID: 286655549}
 --- !u!1 &1325328347
 GameObject:
   m_ObjectHideFlags: 0
@@ -6486,7 +6708,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2125506473
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6560,4 +6782,5 @@ SceneRoots:
   - {fileID: 131643878}
   - {fileID: 184809689}
   - {fileID: 92254597}
+  - {fileID: 1319745056}
   - {fileID: 527908331}

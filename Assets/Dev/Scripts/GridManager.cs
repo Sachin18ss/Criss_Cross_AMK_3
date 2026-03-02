@@ -43,6 +43,7 @@ public class GridManager : MonoBehaviour
 
     [Header("Scripts Reference")]
     public ResetGameLogic resetGameLogic;
+    public SFXController sfxController;
 
     private void Awake()
     {
@@ -132,8 +133,9 @@ public class GridManager : MonoBehaviour
         int value = _isXTurn ? 1 : 2;
         SetCell(r, c, value);
         cell.SetValue(value == 1 ? "X" : "O");
+        sfxController.PlayPlaceSFX();
 
-        if(CheckWin(value))
+        if (CheckWin(value))
         {
             Debug.Log((value == 1 ? "X" : "O") + " Wins!");
 

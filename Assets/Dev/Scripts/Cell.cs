@@ -6,8 +6,10 @@ public class Cell : MonoBehaviour
     public int column;
 
     [SerializeField] private TextMeshPro _cellText;
+
     [Header("Scripts Reference")]
     private GridManager gridManager;
+    
 
     private void Start()
     {
@@ -19,6 +21,8 @@ public class Cell : MonoBehaviour
     {
         _cellText.color = value == "O" ? Color.blue : Color.red;
         _cellText.text = value;
+
+        
     }
 
     void OnMouseDown()
