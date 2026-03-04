@@ -1,4 +1,11 @@
+Applied the Single Responsibility principle 
 
+- Grid Manager only checks is cell empty and draw grids
+- Game ui script created that handles text update and more
+- Buttons Handler script created that defines all the methods needed for buttons
+- Game Manager script created that handles the panel activity, checks win, shows game over panel
+- Cell script updated to having SetCell method.
+- Cell interaction script added that holds OnCellClick method, play sfx, game flow after win.
 
 
 

@@ -4,6 +4,7 @@ public class ResetGameLogic : MonoBehaviour
 {
     [Header("Scripts Reference")]
     public GridManager gridManager;
+    public GameManager gameManager;
 
 
     public void ResetGame()
@@ -12,7 +13,7 @@ public class ResetGameLogic : MonoBehaviour
         {
             for (int c = 0; c < gridManager._cloumns; c++)
             {
-                gridManager.SetCell(r, c, 0);
+                gridManager._cells[r, c].SetCell(r, c, 0);
                 gridManager._cells[r, c].SetValue("");
             }
         }

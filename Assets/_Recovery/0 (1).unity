@@ -346,8 +346,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 521711529}
-        m_TargetAssemblyTypeName: HandleButtons, Assembly-CSharp
+      - m_Target: {fileID: 527908330}
+        m_TargetAssemblyTypeName: GridManager, Assembly-CSharp
         m_MethodName: OnMenuClick
         m_Mode: 1
         m_Arguments:
@@ -2100,8 +2100,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 521711529}
-        m_TargetAssemblyTypeName: HandleButtons, Assembly-CSharp
+      - m_Target: {fileID: 527908330}
+        m_TargetAssemblyTypeName: GridManager, Assembly-CSharp
         m_MethodName: OnOptionsClick
         m_Mode: 1
         m_Arguments:
@@ -2287,70 +2287,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &521711528
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 521711531}
-  - component: {fileID: 521711530}
-  - component: {fileID: 521711529}
-  m_Layer: 0
-  m_Name: UI Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &521711529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 521711528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7a1fb8bfd3e068469eca5b97947bda5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HandleButtons
-  gameManager: {fileID: 527908333}
-  resetGameLogic: {fileID: 527908332}
-  gameUI: {fileID: 521711530}
---- !u!114 &521711530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 521711528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 868de1efbe6c40e4c8329d6c024a7eff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameUI
-  currentPlayer: {fileID: 1170175253}
-  winner: {fileID: 581133147}
-  gameOverBG: {fileID: 1413900486}
-  startButton: {fileID: 1833416615}
---- !u!4 &521711531
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 521711528}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1184.3798, y: 156.99667, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &527908329
 GameObject:
   m_ObjectHideFlags: 0
@@ -2362,8 +2298,6 @@ GameObject:
   - component: {fileID: 527908331}
   - component: {fileID: 527908330}
   - component: {fileID: 527908332}
-  - component: {fileID: 527908334}
-  - component: {fileID: 527908333}
   m_Layer: 0
   m_Name: 'Game Manager '
   m_TagString: Untagged
@@ -2385,11 +2319,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GridManager
   _rows: 3
   _cloumns: 3
+  _winner: 0
+  _isXTurn: 1
+  _hasGameStarted: 0
+  _hasGameOver: 0
   cellPrefab: {fileID: 8329363872735034031, guid: 96afadb2f64bb0f48825b984c980c2e0, type: 3}
   cellsHolder: {fileID: 791127818}
   cellSize: 1.65
+  startButton: {fileID: 1833416615}
+  menuPanel: {fileID: 978622772}
+  gamePanel: {fileID: 184809688}
+  gameOverPanel: {fileID: 2125506472}
+  exitPopUpPanel: {fileID: 768861301}
+  optionsPanel: {fileID: 836570724}
+  gameUIPanel: {fileID: 576202024}
+  currentPlayer: {fileID: 1170175253}
+  winner: {fileID: 581133147}
+  gameOverBG: {fileID: 1413900486}
   resetGameLogic: {fileID: 527908332}
-  gameManager: {fileID: 527908333}
+  sfxController: {fileID: 1319745057}
 --- !u!4 &527908331
 Transform:
   m_ObjectHideFlags: 0
@@ -2418,42 +2366,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResetGameLogic
   gridManager: {fileID: 527908330}
-  gameManager: {fileID: 0}
---- !u!114 &527908333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 527908329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65d2030792ca284468c0726a774d5e98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  menuPanel: {fileID: 978622772}
-  gamePanel: {fileID: 576202024}
-  gameOverPanel: {fileID: 2125506472}
-  exitPopUpPanel: {fileID: 768861301}
-  optionsPanel: {fileID: 836570724}
-  gameUIPanel: {fileID: 521711528}
-  gridManager: {fileID: 527908330}
---- !u!114 &527908334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 527908329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 782166c7f4b5fbe43b6cc7b282c7f339, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CellInteraction
-  sfxController: {fileID: 1319745057}
-  gameManager: {fileID: 527908333}
-  gameUI: {fileID: 521711530}
-  instance: {fileID: 527908334}
 --- !u!1 &558484655
 GameObject:
   m_ObjectHideFlags: 0
@@ -3115,7 +3027,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &768861302
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3551,8 +3463,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 521711529}
-        m_TargetAssemblyTypeName: HandleButtons, Assembly-CSharp
+      - m_Target: {fileID: 527908330}
+        m_TargetAssemblyTypeName: GridManager, Assembly-CSharp
         m_MethodName: OnLeaveClick
         m_Mode: 1
         m_Arguments:
@@ -3684,8 +3596,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 521711529}
-        m_TargetAssemblyTypeName: HandleButtons, Assembly-CSharp
+      - m_Target: {fileID: 527908330}
+        m_TargetAssemblyTypeName: GridManager, Assembly-CSharp
         m_MethodName: OnYesClickOnExit
         m_Mode: 1
         m_Arguments:
@@ -4604,8 +4516,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 521711529}
-        m_TargetAssemblyTypeName: HandleButtons, Assembly-CSharp
+      - m_Target: {fileID: 527908330}
+        m_TargetAssemblyTypeName: GridManager, Assembly-CSharp
         m_MethodName: OnRestartClick
         m_Mode: 1
         m_Arguments:
@@ -5013,8 +4925,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 521711529}
-        m_TargetAssemblyTypeName: HandleButtons, Assembly-CSharp
+      - m_Target: {fileID: 527908330}
+        m_TargetAssemblyTypeName: GridManager, Assembly-CSharp
         m_MethodName: OnNoClickOnExit
         m_Mode: 1
         m_Arguments:
@@ -6328,8 +6240,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 521711529}
-        m_TargetAssemblyTypeName: HandleButtons, Assembly-CSharp
+      - m_Target: {fileID: 527908330}
+        m_TargetAssemblyTypeName: GridManager, Assembly-CSharp
         m_MethodName: OnStartClick
         m_Mode: 1
         m_Arguments:
@@ -6654,8 +6566,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 521711529}
-        m_TargetAssemblyTypeName: HandleButtons, Assembly-CSharp
+      - m_Target: {fileID: 527908330}
+        m_TargetAssemblyTypeName: GridManager, Assembly-CSharp
         m_MethodName: OnCloseClickOnOptions
         m_Mode: 1
         m_Arguments:
@@ -6872,4 +6784,3 @@ SceneRoots:
   - {fileID: 92254597}
   - {fileID: 1319745056}
   - {fileID: 527908331}
-  - {fileID: 521711531}
